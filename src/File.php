@@ -76,7 +76,7 @@ class File
         header('Content-Transfer-Encoding: binary');
 
         // #84: Content-Length leads to "network connection was lost" on iOS
-        $isIOS = preg_match('/i(phone|pad|pod)/i', $_SERVER['HTTP_USER_AGENT']);
+        $isIOS = isset($_SERVER['HTTP_USER_AGENT']) && preg_match('/i(phone|pad|pod)/i', $_SERVER['HTTP_USER_AGENT']);
         if (!$isIOS) {
             header('Content-Length: '.filesize($this->_fileName));
         }
